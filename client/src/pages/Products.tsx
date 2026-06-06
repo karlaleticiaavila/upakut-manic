@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Products.css";
 
 type Product = {
   id: string;
@@ -20,12 +21,12 @@ function Products() {
     async function fetchProducts() {
       try {
         const response = await fetch("http://localhost:3000/products");
+
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
 
         const data = await response.json();
-        console.log("PRODUCTS FROM BACKEND:", data);
         setProducts(data);
       } catch (err) {
         console.error(err);
@@ -38,36 +39,59 @@ function Products() {
     fetchProducts();
   }, []);
 
-  if (loading) return <p style={{ color: "white" }}>Loading...</p>;
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
+  if (loading) {
+    return <p className="products-message">Loading products...</p>;
+  }
+
+  if (error) {
+    return <p className="products-error">{error}</p>;
+  }
 
   return (
-    <div style={{ padding: "2rem", color: "white", background: "#111", minHeight: "100vh" }}>
-      <h1>UPAKUT Products</h1>
+   <section id="products" className="products-section">
+      <div className="products-header">
+        <p className="eyebrow">Upakut Clothing</p>
+        <h2>Selected Pieces</h2>
+        <p>
+          Product concepts connected to Manic’s graffiti identity and the visual
+          language of authentic street art.
+        </p>
+      </div>
 
-      <pre style={{ background: "#222", padding: "1rem", borderRadius: "8px", overflow: "auto" }}>
-        {JSON.stringify(products, null, 2)}
-      </pre>
+      <div className="products-grid">
+        {products.length === 0 ? (
+          <p className="products-message">No products yet.</p>
+        ) : (
+          products.map((product) => (
+            <article key={product.id} className="product-card">
+              <div className="product-image">
+                {product.imageUrl ? (
+                 <img src={`/assets/${product.imageUrl}`} alt={product.title} />
+                ) : (
+                  <span>No image</span>
+                )}
+              </div>
 
-      {products.map((product) => (
-        <div
-          key={product.id}
-          style={{
-            marginTop: "1rem",
-            padding: "1rem",
-            border: "1px solid #444",
-            borderRadius: "12px",
-            background: "#1a1a1a",
-          }}
-        >
-          <p><strong>Title:</strong> {product.title}</p>
-          <p><strong>Description:</strong> {product.description}</p>
-          <p><strong>Category:</strong> {product.category}</p>
-          <p><strong>Price:</strong> ${product.price}</p>
-          <p><strong>Image URL:</strong> {product.imageUrl}</p>
-        </div>
-      ))}
-    </div>
+              <div className="product-info">
+                <div className="product-top">
+                  <span>{product.category}</span>
+                  <span>${product.price}</span>
+                </div>
+
+                <h3>{product.title}</h3>
+                <p>{product.description}</p>
+
+                <div className="product-tags">
+                  {product.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))
+        )}
+      </div>
+    </section>
   );
 }
 
