@@ -1,0 +1,46 @@
+
+ Upakut / Manic
+
+A creative web experience inspired by graffiti culture and independent streetwear from New Zealand.
+
+About
+
+Upakut is a clothing brand rooted in graffiti culture, while MANIC represents the artistic identity behind it.
+
+This project is an ongoing exploration of visual storytelling, frontend development, and future full-stack e-commerce functionality.
+
+Rather than building a generic online store, the goal is to create an immersive digital experience that reflects the personality of the brand.
+
+Current Features
+Responsive React interface
+Custom typography
+Visual identity inspired by graffiti culture
+Animated user experience
+Product presentation
+Modern UI design
+Future Development
+User authentication
+Product management dashboard
+Database integration
+Shopping cart
+Admin panel
+Full-stack architecture
+Deployment
+Tech Stack
+React
+Tailwind CSS
+Node.js
+Express
+MongoDB (planned)
+GSAP (planned)
+Status
+
+🚧 Work in Progress
+
+This is an active project that continues to evolve as new features are developed.
+
+Author
+
+Karla Avila
+
+Creative Web Developer & Model
