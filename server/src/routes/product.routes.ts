@@ -7,7 +7,7 @@ import {
   editProduct,
   removeProduct,
 } from "../controllers/product.controller";
-import { requireAuth } from "../middleware/auth.middleware";
+import { requireAdmin } from "../middleware/auth.middleware";
 
 const router = Router();
 
@@ -15,8 +15,8 @@ router.get("/", browseProducts);
 router.get("/search", searchProductList);
 router.get("/:id", readProduct);
 
-router.post("/",requireAuth, addProduct);
-router.put("/:id", requireAuth, editProduct);
-router.delete("/:id", requireAuth, removeProduct);
+router.post("/",requireAdmin, addProduct);
+router.put("/:id", requireAdmin, editProduct);
+router.delete("/:id", requireAdmin, removeProduct);
 
 export default router;
