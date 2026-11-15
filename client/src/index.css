@@ -9,7 +9,7 @@
 
 .graffiti-title {
   font-family: "Mostwasted", sans-serif;
-  font-size: clamp(4rem, 8vw, 10rem);
+  font-size: clamp(4rem, 10vw, 10rem);
   line-height: 1;
-  text-align: center;
+  position: relative;
 }
