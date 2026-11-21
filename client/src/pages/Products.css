@@ -116,3 +116,8 @@
     grid-template-columns: 1fr;
   }
 }
+.products-coming-soon { grid-column: 1 / -1; padding: clamp(3rem, 7vw, 7rem) 1rem; border: 1px solid rgba(121,247,255,.23); background: radial-gradient(circle at 50% 0%,rgba(61,218,215,.07),transparent 65%); text-align: center; }
+.products-coming-soon__eyebrow { display: block; color: #3ddad7; font-size: .75rem; letter-spacing: .22em; }
+.products-coming-soon h3 { font-size: clamp(2.8rem, 7vw, 6rem); letter-spacing: -.04em; font-weight: 800; margin: 1rem 0; }
+.products-coming-soon p { color: rgba(234,227,213,.7); }
+.products-coming-soon a { display: inline-block; margin-top: 2rem; color: #3ddad7; border-bottom: 1px solid currentColor; padding-bottom: .4rem; font-size: .8rem; letter-spacing: .1em; }

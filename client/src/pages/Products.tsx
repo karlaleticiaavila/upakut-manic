@@ -14,13 +14,15 @@ type Product = {
 
 function Products() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [loading, setLoading] = useState(true);
+  const apiUrl = import.meta.env.VITE_API_URL ?? (import.meta.env.DEV ? "http://localhost:3000" : "");
+  const [loading, setLoading] = useState(Boolean(apiUrl));
   const [error, setError] = useState("");
 
   useEffect(() => {
+    if (!apiUrl) return;
     async function fetchProducts() {
       try {
-        const response = await fetch("http://localhost:3000/products");
+        const response = await fetch(`${apiUrl}/products`);
 
         if (!response.ok) {
           throw new Error("Failed to fetch products");
@@ -37,7 +39,7 @@ function Products() {
     }
 
     fetchProducts();
-  }, []);
+  }, [apiUrl]);
 
   if (loading) {
     return <p className="products-message">Loading products...</p>;
@@ -60,7 +62,12 @@ function Products() {
 
       <div className="products-grid">
         {products.length === 0 ? (
-          <p className="products-message">No products yet.</p>
+          <div className="products-coming-soon">
+            <span className="products-coming-soon__eyebrow">EST. 2009 · NEXT CHAPTER 2027</span>
+            <h3>COMING SOON</h3>
+            <p>Authentic streetwear. New collections in development.</p>
+            <a href="#gallery">EXPLORE THE MANIC ARCHIVE →</a>
+          </div>
         ) : (
           products.map((product) => (
             <article key={product.id} className="product-card">
